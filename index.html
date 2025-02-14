@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mineth & Pasan's Love Story</title>
   <style>
-    /********************************************************
-     * GLOBAL & BASE STYLES
-     ********************************************************/
+    /* Global & Base Styles */
     body {
       margin: 0;
       padding: 0;
@@ -17,15 +15,11 @@
       overflow-x: hidden;
       position: relative;
     }
-
     h1, h2, h3, p {
       margin: 0;
       padding: 0;
     }
-
-    /********************************************************
-     * HEADER
-     ********************************************************/
+    /* Header */
     header {
       text-align: center;
       padding: 60px 20px;
@@ -41,10 +35,7 @@
       font-size: 1.2rem;
       margin-top: 10px;
     }
-
-    /********************************************************
-     * MAIN CONTENT SECTIONS
-     ********************************************************/
+    /* Main Content Sections */
     section {
       padding: 40px 20px;
       text-align: center;
@@ -55,10 +46,7 @@
     #timeline p {
       margin: 15px 0 30px;
     }
-
-    /********************************************************
-     * GALLERY
-     ********************************************************/
+    /* Gallery */
     .gallery {
       display: flex;
       flex-wrap: wrap;
@@ -72,14 +60,12 @@
       border-radius: 10px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
       transition: transform 0.3s;
+      cursor: pointer;
     }
     .gallery img:hover {
       transform: scale(1.05);
     }
-
-    /********************************************************
-     * BUTTONS
-     ********************************************************/
+    /* Buttons */
     button {
       padding: 10px 20px;
       margin: 10px;
@@ -95,10 +81,7 @@
       transform: scale(1.1);
       background: #ff4757;
     }
-
-    /********************************************************
-     * SURPRISE POPUP (CONFETTI & LOVE LETTER)
-     ********************************************************/
+    /* Surprise Popups (Confetti & Love Letter) */
     .secret-message, .love-letter {
       position: fixed;
       top: 40%;
@@ -128,19 +111,16 @@
     .close-btn:hover {
       background: #ff1e3c;
     }
-
-    /********************************************************
-     * FLOATING HEARTS BACKGROUND
-     ********************************************************/
+    /* Floating Hearts Background */
     .hearts {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      pointer-events: none; /* So clicks pass through */
+      pointer-events: none;
       overflow: hidden;
-      z-index: 1; /* Place behind main content but above background */
+      z-index: 1;
     }
     .heart {
       position: absolute;
@@ -181,14 +161,35 @@
         opacity: 0;
       }
     }
-
-    /* We'll assign different speeds and positions to each heart via inline styles */
+    /* Photo Message Popup */
+    .photo-message {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 1rem;
+      color: #ff4757;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      pointer-events: none;
+      animation: fadeOut 2s forwards;
+    }
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      100% { opacity: 0; transform: translateY(-20px); }
+    }
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #ffe6f0;
+      font-size: 0.9rem;
+      color: #ff4757;
+    }
   </style>
 </head>
 <body>
-  <!-- Floating Hearts Container -->
+  <!-- Floating Hearts Background -->
   <div class="hearts">
-    <!-- Feel free to duplicate and adjust the inline styles for more hearts -->
     <div class="heart" style="left: 10%; animation-duration: 12s; animation-delay: 0s;"></div>
     <div class="heart" style="left: 30%; animation-duration: 18s; animation-delay: 2s;"></div>
     <div class="heart" style="left: 50%; animation-duration: 15s; animation-delay: 1s;"></div>
@@ -196,24 +197,24 @@
     <div class="heart" style="left: 90%; animation-duration: 25s; animation-delay: 3s;"></div>
   </div>
 
-  <!-- HEADER -->
+  <!-- Header -->
   <header>
-    <h1>Happy Valentine’s Day, Pasan!</h1>
-    <p>From Mineth, with all my love</p>
+    <h1>Happy Valentine’s Day, Chooty!</h1>
+    <p>From Babytha, with all my love</p>
   </header>
 
-  <!-- MAIN CONTENT: TIMELINE / JOURNEY -->
+  <!-- Main Content: Timeline / Journey -->
   <section id="timeline">
     <h2>Our Beautiful Journey</h2>
     <p>
-      We met last year.  
-      It's been a wonderful adventure filled with laughter, growth, and so much love.
-      Here are some of our favorite moments together!
+      We met last year 
+      It's been a wonderful adventure filled with laughter, growth, and endless love.
+      Every memory with you makes my heart smile.
     </p>
 
     <!-- Photo Gallery -->
     <div class="gallery">
-      <!-- Rename your images or update src accordingly -->
+      <!-- Update these src attributes if your image names differ -->
       <img src="photo1.jpg" alt="Mineth and Pasan smiling together" />
       <img src="photo2.jpg" alt="Mineth and Pasan sharing a fun moment" />
       <img src="photo3.jpg" alt="Pasan looking adorable" />
@@ -221,46 +222,53 @@
     </div>
   </section>
 
-  <!-- SURPRISE SECTION -->
+  <!-- Surprise Section -->
   <section id="surprises">
     <h2>Surprises Await!</h2>
-    <!-- Confetti Surprise Button -->
     <button id="secretBtn">Confetti Surprise!</button>
-    <!-- Love Letter Button -->
     <button id="loveLetterBtn">Open Love Letter</button>
-    <!-- Optional Music Player Button (Add your own MP3) -->
-    <button id="playSongBtn">Play/Pause Love Song</button>
-    <audio id="loveSong" src="song.mp3"></audio>
   </section>
+
+  <!-- Footer with a Love Quote -->
+  <footer>
+    <p>"Love doesn't make the world go round. Love is what makes the ride worthwhile." - Franklin P. Jones</p>
+  </footer>
+
+  <!-- Audio for Love Song (auto-plays and loops) -->
+  <audio id="loveSong" src="song.mp3" loop></audio>
 
   <!-- Include Confetti Library (CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
 
-  <!-- MAIN SCRIPT -->
+  <!-- Main Script -->
   <script>
-    // 1. CONFETTI SURPRISE
+    // 1. Auto-play the love song on page load
+    window.addEventListener('load', function() {
+      var loveSong = document.getElementById('loveSong');
+      loveSong.play().catch(function(error) {
+        console.log("Autoplay failed, user interaction might be required.");
+      });
+    });
+
+    // 2. Confetti Surprise on Button Click
     const secretBtn = document.getElementById('secretBtn');
     secretBtn.addEventListener('click', function() {
-      // Trigger confetti
       confetti({ 
         particleCount: 150, 
         spread: 80, 
         origin: { y: 0.6 } 
       });
       
-      // Create a short-lived secret message
       const secretMessage = document.createElement('div');
       secretMessage.classList.add('secret-message');
-      secretMessage.innerHTML = "<h2>I Love You More Than Words!</h2><p>Thank you for bringing so much joy into my life!</p>";
+      secretMessage.innerHTML = "<h2>I Love You More Than Words!</h2><p>Every moment with you is a treasure.</p>";
       document.body.appendChild(secretMessage);
-      
-      // Remove the secret message after 3 seconds
       setTimeout(() => {
         secretMessage.remove();
       }, 3000);
     });
 
-    // 2. LOVE LETTER POPUP
+    // 3. Love Letter Popup
     const loveLetterBtn = document.getElementById('loveLetterBtn');
     loveLetterBtn.addEventListener('click', () => {
       const loveLetter = document.createElement('div');
@@ -268,43 +276,48 @@
       loveLetter.innerHTML = `
         <h3>My Dearest Chooty,</h3>
         <p>
-          From the day I met you, my life has been brighter.  
-          Thank you for all the smiles, the warmth, and the endless support.  
-          I cherish every moment we spend together and can’t wait to see  
-          what the future holds for us. 
+          Since the day we met, my heart has found its home in you.  
+          Every smile, every hug, every moment with you fills my life with magic.  
+          You are my sunshine, my confidant, and the love I cherish most.
         </p>
         <p>
-          Happy Valentine’s Day, and here’s to many more adventures to come!  
+          Happy Valentine’s Day, and here's to a lifetime of love and beautiful adventures together.
           <br/><br/>
-          With all my love,<br/>
+          Forever yours,<br/>
           Babytha
         </p>
         <span class="close-btn" id="closeLoveLetter">Close</span>
       `;
       document.body.appendChild(loveLetter);
-
-      // Close Button Handler
       const closeBtn = document.getElementById('closeLoveLetter');
       closeBtn.addEventListener('click', () => {
         loveLetter.remove();
       });
     });
 
-    // 3. OPTIONAL LOVE SONG PLAY/PAUSE
-    const playSongBtn = document.getElementById('playSongBtn');
-    const loveSong = document.getElementById('loveSong');
-    let isPlaying = false;
-
-    playSongBtn.addEventListener('click', () => {
-      if (!isPlaying) {
-        loveSong.play();
-        isPlaying = true;
-        playSongBtn.textContent = "Pause Love Song";
-      } else {
-        loveSong.pause();
-        isPlaying = false;
-        playSongBtn.textContent = "Play Love Song";
-      }
+    // 4. Add Cute Wording When Photos Are Clicked
+    document.querySelectorAll('.gallery img').forEach(img => {
+      img.addEventListener('click', function(e) {
+        const rect = img.getBoundingClientRect();
+        const message = document.createElement('div');
+        message.className = 'photo-message';
+        const cuteMessages = [
+          "Every moment with you is magic!",
+          "You light up my world!",
+          "My heart beats for you!",
+          "Together, we create beautiful memories!",
+          "I love you more than words can say!"
+        ];
+        const randomMessage = cuteMessages[Math.floor(Math.random() * cuteMessages.length)];
+        message.textContent = randomMessage;
+        // Position the message at the center above the clicked photo
+        message.style.left = (rect.left + rect.width / 2 - 100) + 'px';
+        message.style.top = (rect.top - 40) + 'px';
+        document.body.appendChild(message);
+        setTimeout(() => {
+          message.remove();
+        }, 2000);
+      });
     });
   </script>
 </body>
