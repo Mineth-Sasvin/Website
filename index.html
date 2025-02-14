@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mineth & Pasan's Love Story</title>
   <style>
-    /* Global & Base Styles */
+    /* GLOBAL & BASE STYLES */
     body {
       margin: 0;
       padding: 0;
@@ -19,7 +19,8 @@
       margin: 0;
       padding: 0;
     }
-    /* Header */
+
+    /* HEADER */
     header {
       text-align: center;
       padding: 60px 20px;
@@ -35,7 +36,8 @@
       font-size: 1.2rem;
       margin-top: 10px;
     }
-    /* Main Content Sections */
+
+    /* MAIN CONTENT SECTIONS */
     section {
       padding: 40px 20px;
       text-align: center;
@@ -46,7 +48,8 @@
     #timeline p {
       margin: 15px 0 30px;
     }
-    /* Gallery */
+
+    /* GALLERY */
     .gallery {
       display: flex;
       flex-wrap: wrap;
@@ -65,7 +68,8 @@
     .gallery img:hover {
       transform: scale(1.05);
     }
-    /* Buttons */
+
+    /* BUTTONS */
     button {
       padding: 10px 20px;
       margin: 10px;
@@ -81,7 +85,8 @@
       transform: scale(1.1);
       background: #ff4757;
     }
-    /* Surprise Popups (Confetti & Love Letter) */
+
+    /* SURPRISE POPUPS (CONFETTI & LOVE LETTER) */
     .secret-message, .love-letter {
       position: fixed;
       top: 40%;
@@ -111,7 +116,8 @@
     .close-btn:hover {
       background: #ff1e3c;
     }
-    /* Floating Hearts Background */
+
+    /* FLOATING HEARTS BACKGROUND */
     .hearts {
       position: fixed;
       top: 0;
@@ -161,23 +167,61 @@
         opacity: 0;
       }
     }
-    /* Photo Message Popup */
-    .photo-message {
-      position: absolute;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 8px;
-      padding: 8px 12px;
-      font-size: 1rem;
-      color: #ff4757;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+
+    /* LIGHTBOX FOR ENLARGING PHOTOS */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      opacity: 0;
       pointer-events: none;
-      animation: fadeOut 2s forwards;
+      transition: opacity 0.3s ease;
     }
-    @keyframes fadeOut {
-      0% { opacity: 1; }
-      100% { opacity: 0; transform: translateY(-20px); }
+    .lightbox.active {
+      opacity: 1;
+      pointer-events: auto;
     }
-    /* Footer */
+    .lightbox-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+      text-align: center;
+    }
+    .lightbox-content img {
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+    .lightbox-caption {
+      margin-top: 15px;
+      font-size: 1rem;
+      color: #fff;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: -40px;
+      right: -10px;
+      font-size: 1.2rem;
+      background: #ff6b81;
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .lightbox-close:hover {
+      background: #ff4757;
+    }
+
+    /* FOOTER */
     footer {
       text-align: center;
       padding: 20px;
@@ -185,7 +229,8 @@
       font-size: 0.9rem;
       color: #ff4757;
     }
-    /* Enable Sound Button */
+
+    /* ENABLE SOUND BUTTON */
     .enable-sound-btn {
       position: fixed;
       bottom: 20px;
@@ -196,13 +241,13 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      z-index: 2000;
+      z-index: 3000;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
     }
   </style>
 </head>
 <body>
-  <!-- Floating Hearts Background -->
+  <!-- FLOATING HEARTS BACKGROUND -->
   <div class="hearts">
     <div class="heart" style="left: 10%; animation-duration: 12s; animation-delay: 0s;"></div>
     <div class="heart" style="left: 30%; animation-duration: 18s; animation-delay: 2s;"></div>
@@ -211,74 +256,91 @@
     <div class="heart" style="left: 90%; animation-duration: 25s; animation-delay: 3s;"></div>
   </div>
 
-  <!-- Header -->
+  <!-- HEADER -->
   <header>
     <h1>Happy Valentine’s Day, Chooty!</h1>
     <p>From Babytha, with all my love</p>
   </header>
 
-  <!-- Main Content: Timeline / Journey -->
+  <!-- MAIN CONTENT: TIMELINE / JOURNEY -->
   <section id="timeline">
     <h2>Our Beautiful Journey</h2>
     <p>
-      We met last year, 
+      We met last year,  
       It's been a wonderful adventure filled with laughter, growth, and endless love.
       Every memory with you makes my heart smile.
     </p>
 
-    <!-- Photo Gallery -->
+    <!-- PHOTO GALLERY (INCLUDING NEW PHOTOS) -->
     <div class="gallery">
-      <!-- Update these src attributes if your image names differ -->
-      <img src="photo1.jpg" alt="Mineth and Pasan smiling together" />
-      <img src="photo2.jpg" alt="Mineth and Pasan sharing a fun moment" />
-      <img src="photo3.jpg" alt="Pasan looking adorable" />
-      <img src="photo4.jpg" alt="Mineth and Pasan mirror selfie" />
+      <!-- Existing 4 images -->
+      <img src="photo1.jpg" alt="Memory 1" />
+      <img src="photo2.jpg" alt="Memory 2" />
+      <img src="photo3.jpg" alt="Memory 3" />
+      <img src="photo4.jpg" alt="Memory 4" />
+      <!-- New images -->
+      <img src="photo5.jpg" alt="Memory 5" />
+      <img src="photo6.jpg" alt="Memory 6" />
+      <img src="photo7.jpg" alt="Memory 7" />
+      <img src="photo8.jpg" alt="Memory 8" />
+      <img src="photo9.jpg" alt="Memory 9" />
+      <img src="photo10.jpg" alt="Memory 10" />
     </div>
   </section>
 
-  <!-- Surprise Section -->
+  <!-- SURPRISE SECTION -->
   <section id="surprises">
     <h2>Surprises Await!</h2>
     <button id="secretBtn">Confetti Surprise!</button>
     <button id="loveLetterBtn">Open Love Letter</button>
   </section>
 
-  <!-- Footer with a Love Quote -->
+  <!-- FOOTER WITH A LOVE QUOTE -->
   <footer>
     <p>"Love doesn't make the world go round. Love is what makes the ride worthwhile."</p>
   </footer>
 
-  <!-- Audio for Love Song (autoplays and loops) -->
+  <!-- LIGHTBOX STRUCTURE (HIDDEN BY DEFAULT) -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+      <img id="lightboxImage" src="#" alt="Enlarged Photo" />
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+      <div class="lightbox-close" id="lightboxClose">Close ✕</div>
+    </div>
+  </div>
+
+  <!-- AUDIO FOR LOVE SONG (AUTOPLAYS AND LOOPS) -->
   <audio id="loveSong" src="song.mp3" loop></audio>
 
-  <!-- Include Confetti Library (CDN) -->
+  <!-- CONFETTI LIBRARY (CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
 
-  <!-- Main Script -->
+  <!-- MAIN SCRIPT -->
   <script>
-    // 1. Attempt to Auto-play the Love Song on Page Load
+    /*******************************************************
+     * 1. ATTEMPT TO AUTOPLAY THE LOVE SONG ON PAGE LOAD
+     *******************************************************/
     window.addEventListener('load', function() {
-      var loveSong = document.getElementById('loveSong');
-      // Try playing the audio
-      loveSong.play().catch(function(error) {
-        console.log("Autoplay failed, user interaction is required.");
+      const loveSong = document.getElementById('loveSong');
+      loveSong.play().catch(function() {
+        console.log("Autoplay blocked. Showing 'Enable Sound' button.");
         // Create an "Enable Sound" button if autoplay fails
         if (!document.getElementById('enableSoundBtn')) {
-          var enableSoundBtn = document.createElement('button');
+          const enableSoundBtn = document.createElement('button');
           enableSoundBtn.id = "enableSoundBtn";
           enableSoundBtn.textContent = "Enable Sound";
           enableSoundBtn.className = "enable-sound-btn";
           document.body.appendChild(enableSoundBtn);
           enableSoundBtn.addEventListener('click', function() {
-            loveSong.play().then(function() {
-              enableSoundBtn.remove();
-            });
+            loveSong.play().then(() => enableSoundBtn.remove());
           });
         }
       });
     });
 
-    // 2. Confetti Surprise on Button Click
+    /*******************************************************
+     * 2. CONFETTI SURPRISE ON BUTTON CLICK
+     *******************************************************/
     const secretBtn = document.getElementById('secretBtn');
     secretBtn.addEventListener('click', function() {
       confetti({ 
@@ -295,7 +357,9 @@
       }, 3000);
     });
 
-    // 3. Love Letter Popup
+    /*******************************************************
+     * 3. LOVE LETTER POPUP
+     *******************************************************/
     const loveLetterBtn = document.getElementById('loveLetterBtn');
     loveLetterBtn.addEventListener('click', () => {
       const loveLetter = document.createElement('div');
@@ -322,29 +386,53 @@
       });
     });
 
-    // 4. Add Cute Wording When Photos Are Clicked
+    /*******************************************************
+     * 4. LIGHTBOX FOR ENLARGING PHOTOS W/ RANDOM MESSAGES
+     *******************************************************/
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    // Some sweet messages to display randomly
+    const sweetMessages = [
+      "Every moment with you is magic!",
+      "You light up my world!",
+      "My heart beats for you!",
+      "We create beautiful memories together!",
+      "I love you more than words can say!",
+      "You are my sunshine in every season!",
+      "My forever Valentine!"
+    ];
+
+    // When an image in the gallery is clicked
     document.querySelectorAll('.gallery img').forEach(img => {
-      img.addEventListener('click', function(e) {
-        const rect = img.getBoundingClientRect();
-        const message = document.createElement('div');
-        message.className = 'photo-message';
-        const cuteMessages = [
-          "Every moment with you is magic!",
-          "You light up my world!",
-          "My heart beats for you!",
-          "Together, we create beautiful memories!",
-          "I love you more than words can say!"
-        ];
-        const randomMessage = cuteMessages[Math.floor(Math.random() * cuteMessages.length)];
-        message.textContent = randomMessage;
-        // Position the message at the center above the clicked photo
-        message.style.left = (rect.left + rect.width / 2 - 100) + 'px';
-        message.style.top = (rect.top - 40) + 'px';
-        document.body.appendChild(message);
-        setTimeout(() => {
-          message.remove();
-        }, 2000);
+      img.addEventListener('click', function() {
+        // Set the lightbox image source to the clicked image
+        lightboxImage.src = this.src;
+        // Generate a random sweet message
+        const randomMsg = sweetMessages[Math.floor(Math.random() * sweetMessages.length)];
+        lightboxCaption.textContent = randomMsg;
+
+        // Show the lightbox
+        lightbox.classList.add('active');
       });
+    });
+
+    // Close button for the lightbox
+    lightboxClose.addEventListener('click', function() {
+      lightbox.classList.remove('active');
+      lightboxImage.src = '';
+      lightboxCaption.textContent = '';
+    });
+
+    // Also close lightbox if user clicks outside the image
+    lightbox.addEventListener('click', function(e) {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('active');
+        lightboxImage.src = '';
+        lightboxCaption.textContent = '';
+      }
     });
   </script>
 </body>
