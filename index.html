@@ -5,32 +5,60 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mineth & Pasan's Love Story</title>
   <style>
-    /* Base Styles */
+    /********************************************************
+     * GLOBAL & BASE STYLES
+     ********************************************************/
     body {
+      margin: 0;
+      padding: 0;
       font-family: 'Comic Sans MS', cursive, sans-serif;
       background: #fff0f6;
       color: #333;
-      margin: 0;
-      padding: 0;
       overflow-x: hidden;
-    }
-    header {
-      text-align: center;
-      padding: 50px 20px;
-      background: linear-gradient(135deg, #ffafbd, #ffc3a0);
-    }
-    h1, h2 {
-      margin: 0;
-    }
-    p {
-      margin: 15px 0;
+      position: relative;
     }
 
-    /* Timeline / Story Section */
+    h1, h2, h3, p {
+      margin: 0;
+      padding: 0;
+    }
+
+    /********************************************************
+     * HEADER
+     ********************************************************/
+    header {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+      position: relative;
+      overflow: hidden;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    header p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+
+    /********************************************************
+     * MAIN CONTENT SECTIONS
+     ********************************************************/
     section {
       padding: 40px 20px;
       text-align: center;
     }
+    #timeline h2 {
+      font-size: 2rem;
+    }
+    #timeline p {
+      margin: 15px 0 30px;
+    }
+
+    /********************************************************
+     * GALLERY
+     ********************************************************/
     .gallery {
       display: flex;
       flex-wrap: wrap;
@@ -43,11 +71,18 @@
       height: auto;
       border-radius: 10px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
     }
 
-    /* Surprise Button */
+    /********************************************************
+     * BUTTONS
+     ********************************************************/
     button {
       padding: 10px 20px;
+      margin: 10px;
       background: #ff6b81;
       color: white;
       border: none;
@@ -61,8 +96,10 @@
       background: #ff4757;
     }
 
-    /* Secret Message Popup */
-    .secret-message {
+    /********************************************************
+     * SURPRISE POPUP (CONFETTI & LOVE LETTER)
+     ********************************************************/
+    .secret-message, .love-letter {
       position: fixed;
       top: 40%;
       left: 50%;
@@ -72,17 +109,100 @@
       border-radius: 10px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.2);
       z-index: 1000;
+      max-width: 90%;
+      width: 400px;
     }
+    .love-letter h3 {
+      margin-bottom: 10px;
+    }
+    .close-btn {
+      display: inline-block;
+      margin-top: 15px;
+      background: #ff4757;
+      padding: 5px 10px;
+      border-radius: 5px;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .close-btn:hover {
+      background: #ff1e3c;
+    }
+
+    /********************************************************
+     * FLOATING HEARTS BACKGROUND
+     ********************************************************/
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none; /* So clicks pass through */
+      overflow: hidden;
+      z-index: 1; /* Place behind main content but above background */
+    }
+    .heart {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background-color: #ff6b81;
+      transform: rotate(45deg);
+      animation: floatHeart linear infinite;
+      border-radius: 4px;
+    }
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background-color: #ff6b81;
+      border-radius: 50%;
+    }
+    .heart::before {
+      top: -25px;
+      left: 0;
+    }
+    .heart::after {
+      left: 25px;
+      top: 0;
+    }
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    /* We'll assign different speeds and positions to each heart via inline styles */
   </style>
 </head>
 <body>
-  <!-- Welcome Section -->
-  <header id="welcome">
+  <!-- Floating Hearts Container -->
+  <div class="hearts">
+    <!-- Feel free to duplicate and adjust the inline styles for more hearts -->
+    <div class="heart" style="left: 10%; animation-duration: 12s; animation-delay: 0s;"></div>
+    <div class="heart" style="left: 30%; animation-duration: 18s; animation-delay: 2s;"></div>
+    <div class="heart" style="left: 50%; animation-duration: 15s; animation-delay: 1s;"></div>
+    <div class="heart" style="left: 70%; animation-duration: 20s; animation-delay: 0s;"></div>
+    <div class="heart" style="left: 90%; animation-duration: 25s; animation-delay: 3s;"></div>
+  </div>
+
+  <!-- HEADER -->
+  <header>
     <h1>Happy Valentine’s Day, Pasan!</h1>
     <p>From Mineth, with all my love</p>
   </header>
 
-  <!-- Our Journey Section -->
+  <!-- MAIN CONTENT: TIMELINE / JOURNEY -->
   <section id="timeline">
     <h2>Our Beautiful Journey</h2>
     <p>
@@ -93,7 +213,7 @@
 
     <!-- Photo Gallery -->
     <div class="gallery">
-      <!-- Update the src to match your actual image filenames -->
+      <!-- Rename your images or update src accordingly -->
       <img src="photo1.jpg" alt="Mineth and Pasan smiling together" />
       <img src="photo2.jpg" alt="Mineth and Pasan sharing a fun moment" />
       <img src="photo3.jpg" alt="Pasan looking adorable" />
@@ -101,34 +221,90 @@
     </div>
   </section>
 
-  <!-- Surprise Section -->
+  <!-- SURPRISE SECTION -->
   <section id="surprises">
-    <button id="secretBtn">Click for a Surprise!</button>
+    <h2>Surprises Await!</h2>
+    <!-- Confetti Surprise Button -->
+    <button id="secretBtn">Confetti Surprise!</button>
+    <!-- Love Letter Button -->
+    <button id="loveLetterBtn">Open Love Letter</button>
+    <!-- Optional Music Player Button (Add your own MP3) -->
+    <button id="playSongBtn">Play/Pause Love Song</button>
+    <audio id="loveSong" src="song.mp3"></audio>
   </section>
 
-  <!-- Confetti Library (CDN) -->
+  <!-- Include Confetti Library (CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
 
-  <!-- Main Script -->
+  <!-- MAIN SCRIPT -->
   <script>
-    document.getElementById('secretBtn').addEventListener('click', function() {
+    // 1. CONFETTI SURPRISE
+    const secretBtn = document.getElementById('secretBtn');
+    secretBtn.addEventListener('click', function() {
       // Trigger confetti
       confetti({ 
-        particleCount: 100, 
-        spread: 70, 
+        particleCount: 150, 
+        spread: 80, 
         origin: { y: 0.6 } 
       });
       
-      // Show a secret love note
+      // Create a short-lived secret message
       const secretMessage = document.createElement('div');
       secretMessage.classList.add('secret-message');
-      secretMessage.innerHTML = "<h2>I Love You More Than Words!</h2><p>Thank you for bringing so much joy into my life. Here's to many more anniversaries!</p>";
+      secretMessage.innerHTML = "<h2>I Love You More Than Words!</h2><p>Thank you for bringing so much joy into my life!</p>";
       document.body.appendChild(secretMessage);
       
       // Remove the secret message after 3 seconds
       setTimeout(() => {
         secretMessage.remove();
       }, 3000);
+    });
+
+    // 2. LOVE LETTER POPUP
+    const loveLetterBtn = document.getElementById('loveLetterBtn');
+    loveLetterBtn.addEventListener('click', () => {
+      const loveLetter = document.createElement('div');
+      loveLetter.classList.add('love-letter');
+      loveLetter.innerHTML = `
+        <h3>My Dearest Pasan,</h3>
+        <p>
+          From the day I met you, my life has been brighter.  
+          Thank you for all the smiles, the warmth, and the endless support.  
+          I cherish every moment we spend together and can’t wait to see  
+          what the future holds for us. 
+        </p>
+        <p>
+          Happy Valentine’s Day, and here’s to many more adventures to come!  
+          <br/><br/>
+          With all my love,<br/>
+          Mineth
+        </p>
+        <span class="close-btn" id="closeLoveLetter">Close</span>
+      `;
+      document.body.appendChild(loveLetter);
+
+      // Close Button Handler
+      const closeBtn = document.getElementById('closeLoveLetter');
+      closeBtn.addEventListener('click', () => {
+        loveLetter.remove();
+      });
+    });
+
+    // 3. OPTIONAL LOVE SONG PLAY/PAUSE
+    const playSongBtn = document.getElementById('playSongBtn');
+    const loveSong = document.getElementById('loveSong');
+    let isPlaying = false;
+
+    playSongBtn.addEventListener('click', () => {
+      if (!isPlaying) {
+        loveSong.play();
+        isPlaying = true;
+        playSongBtn.textContent = "Pause Love Song";
+      } else {
+        loveSong.pause();
+        isPlaying = false;
+        playSongBtn.textContent = "Play Love Song";
+      }
     });
   </script>
 </body>
