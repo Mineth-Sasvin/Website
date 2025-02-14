@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Love Story</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mineth & Pasan's Love Story</title>
   <style>
-    /* Base styles */
+    /* Base Styles */
     body {
       font-family: 'Comic Sans MS', cursive, sans-serif;
       background: #fff0f6;
@@ -19,10 +19,33 @@
       padding: 50px 20px;
       background: linear-gradient(135deg, #ffafbd, #ffc3a0);
     }
+    h1, h2 {
+      margin: 0;
+    }
+    p {
+      margin: 15px 0;
+    }
+
+    /* Timeline / Story Section */
     section {
       padding: 40px 20px;
       text-align: center;
     }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .gallery img {
+      width: 250px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Surprise Button */
     button {
       padding: 10px 20px;
       background: #ff6b81;
@@ -37,6 +60,8 @@
       transform: scale(1.1);
       background: #ff4757;
     }
+
+    /* Secret Message Popup */
     .secret-message {
       position: fixed;
       top: 40%;
@@ -53,37 +78,51 @@
 <body>
   <!-- Welcome Section -->
   <header id="welcome">
-    <h1>Happy Valentine’s Day!</h1>
-    <p>A journey of our memories...</p>
+    <h1>Happy Valentine’s Day, Pasan!</h1>
+    <p>From Mineth, with all my love</p>
   </header>
 
-  <!-- Timeline Section -->
+  <!-- Our Journey Section -->
   <section id="timeline">
-    <h2>Our Journey</h2>
-    <p>From the day we met to now, every moment has been magical.</p>
-    <!-- Add more timeline content or images here -->
+    <h2>Our Beautiful Journey</h2>
+    <p>
+      We met last year, and our anniversary is on <strong>25th April</strong>.  
+      It's been a wonderful adventure filled with laughter, growth, and so much love.
+      Here are some of our favorite moments together!
+    </p>
+
+    <!-- Photo Gallery -->
+    <div class="gallery">
+      <!-- Update the src to match your actual image filenames -->
+      <img src="photo1.jpg" alt="Mineth and Pasan smiling together" />
+      <img src="photo2.jpg" alt="Mineth and Pasan sharing a fun moment" />
+      <img src="photo3.jpg" alt="Pasan looking adorable" />
+      <img src="photo4.jpg" alt="Mineth and Pasan mirror selfie" />
+    </div>
   </section>
 
   <!-- Surprise Section -->
   <section id="surprises">
-    <button id="secretBtn">Click me for a surprise!</button>
+    <button id="secretBtn">Click for a Surprise!</button>
   </section>
 
-  <!-- Include the canvas-confetti library via CDN -->
+  <!-- Confetti Library (CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+
+  <!-- Main Script -->
   <script>
     document.getElementById('secretBtn').addEventListener('click', function() {
-      // Trigger a confetti effect using the library
+      // Trigger confetti
       confetti({ 
         particleCount: 100, 
         spread: 70, 
         origin: { y: 0.6 } 
       });
       
-      // Create and display a secret message element
+      // Show a secret love note
       const secretMessage = document.createElement('div');
       secretMessage.classList.add('secret-message');
-      secretMessage.innerHTML = "<h2>I Love You More Than Words!</h2>";
+      secretMessage.innerHTML = "<h2>I Love You More Than Words!</h2><p>Thank you for bringing so much joy into my life. Here's to many more anniversaries!</p>";
       document.body.appendChild(secretMessage);
       
       // Remove the secret message after 3 seconds
